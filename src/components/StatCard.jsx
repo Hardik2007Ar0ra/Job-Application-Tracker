@@ -1,0 +1,1 @@
+export default function StatCard({ label, value, detail, detailColor = "text-[#ef7355]" }) { return <article className="rounded-3xl border border-white/10 bg-[#1c1c1c] p-7"><p className="text-stone-500">{label}</p><p className="mt-7 font-serif text-5xl font-bold">{value}</p><p className={`mt-2 ${detailColor}`}>{detail}</p></article>; }

@@ -1,0 +1,2 @@
+const styles = { Applied: "bg-orange-400/15 text-orange-300", OA: "bg-violet-400/15 text-violet-300", "Round 1": "bg-blue-400/15 text-blue-300", Interview: "bg-emerald-400/15 text-emerald-300", Offer: "bg-green-400/15 text-green-300", Rejected: "bg-red-400/15 text-red-300" };
+export default function StatusBadge({ status }) { return <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium ${styles[status] || styles.Applied}`}><span className="h-2 w-2 rounded-full bg-current" />{status}</span>; }
