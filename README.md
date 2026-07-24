@@ -1,8 +1,11 @@
 # Traccio — Job Application Tracker
 
+🔗 **Live Demo:** https://traccio.netlify.app/
+
 Traccio is a responsive web application for organising a job search in one place. Users can create an account, record each job application, track its progress through the hiring process, and view a dashboard that summarises their search activity.
 
 The project uses **Appwrite as its backend-as-a-service** for authentication and persistent application data. The React frontend provides the interface, state management, routing, validation, and visual analytics.
+
 
 ## What the project does
 
@@ -60,7 +63,7 @@ Job seekers often apply to many roles across different companies and need a simp
 
 ## How Appwrite is used as the backend
 
-Appwrite removes the need to build a traditional server for the current version of Traccio.
+Appwrite provides authentication and cloud database services used by Traccio, allowing the application to securely manage users and persist job application records without building a custom backend.
 
 - **Authentication:** Appwrite Account manages registration, email/password login, sessions, logout, current-user retrieval, and profile-name updates.
 - **Database:** Appwrite Database stores each job application as a document.
@@ -119,21 +122,19 @@ Create a database and collection, then use their IDs in the environment variable
 
 These are proposed next steps and are not part of the current project.
 
-### Build a custom backend
+### Custom Backend
 
-Develop a dedicated backend with Node.js and Express/NestJS, REST or GraphQL APIs, a relational database such as PostgreSQL, JWT/refresh-token authentication, server-side validation, rate limiting, logging, and automated tests. Appwrite could then be retained for selected services or replaced gradually.
+Replace the Backend-as-a-Service architecture with a Node.js backend using Express or NestJS, PostgreSQL, JWT authentication, REST APIs, logging, testing, and deployment.
 
-### AI job-search assistant
+### AI Assistant
 
-Add an AI chatbot that can help users:
+Future versions may include an AI assistant capable of:
 
-- Summarise job descriptions and identify key skills
-- Compare a resume with a job posting and suggest improvements
-- Generate tailored cover-letter or outreach-message drafts
-- Recommend interview preparation questions
-- Suggest next actions from the user's application pipeline
-
-The assistant should use explicit user consent and avoid submitting applications or sending messages without review.
+- Resume analysis
+- Job description summarisation
+- Interview preparation
+- Cover-letter generation
+- Personalized job search recommendations
 
 ### Other upgrade ideas
 
@@ -149,4 +150,4 @@ The assistant should use explicit user consent and avoid submitting applications
 
 ## Project status
 
-This is the final version of the current Traccio project. The upgrade ideas above provide a clear roadmap for evolving it into a more complete job-search platform.
+This project is production-ready for its current scope and serves as the foundation for future enhancements listed above.
