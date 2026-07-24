@@ -10,6 +10,7 @@ if (isConfigured) {
 }
 
 const databases = new Databases(client);
+const user = await authService.getCurrentUser();
 
 const toApplication = (document) => ({
   id: document.$id,
@@ -42,7 +43,10 @@ export const applicationService = {
     const result = await databases.listDocuments({
       databaseId: conf.appwriteDatabaseId,
       collectionId: conf.appwriteCollectionId,
-      queries: [Query.limit(100)],
+      queries: [
+        Query.equal("userID", user.$id),
+        Query.limit(100),
+      ],
     });
     return result.documents.map(toApplication);
   },
@@ -53,7 +57,10 @@ export const applicationService = {
       databaseId: conf.appwriteDatabaseId,
       collectionId: conf.appwriteCollectionId,
       documentId: ID.unique(),
-      data: toDocumentData(application),
+      data: {
+        ...toDocumentData(application),
+        userID:user.$id
+      }
     });
     return toApplication(document);
   },

@@ -20,7 +20,8 @@ export default function useApplications() {
   }, [dispatch]);
 
   const add = async (application) => {
-    const savedApplication = await applicationService.create(application);
+    const user= await authService.getCurrentUser();
+    const savedApplication = await applicationService.create(application,user.$id);
     dispatch(addApplication(savedApplication));
   };
   const update = async (application) => {
