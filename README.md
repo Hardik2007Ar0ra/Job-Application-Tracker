@@ -1,36 +1,75 @@
 # Traccio — Job Application Tracker
 
-Traccio is a responsive job-application tracker that helps candidates manage roles, applications, interviews, and offers in one focused dashboard.
+Traccio is a responsive web application for organising a job search in one place. Users can create an account, record each job application, track its progress through the hiring process, and view a dashboard that summarises their search activity.
 
-## Features
+The project uses **Appwrite as its backend-as-a-service** for authentication and persistent application data. The React frontend provides the interface, state management, routing, validation, and visual analytics.
 
-- Appwrite email/password authentication and profile updates
-- Protected dashboard routes
-- Create, edit, search, filter, and delete applications
-- Application stage analytics and useful at-a-glance metrics
-- Persistent application data using Redux and local storage
-- Optional job-posting links and notes for each application
-- Responsive navigation for desktop and mobile
-- Light and dark theme preference saved with Context API
+## What the project does
 
-## Built with
+Job seekers often apply to many roles across different companies and need a simple way to remember their application status, dates, job links, interview notes, and next steps. Traccio keeps these details together in a personal dashboard so users can monitor their progress from application to offer or rejection.
 
-- React and Vite
-- React Router
-- Redux Toolkit and React Redux
-- Appwrite
-- Tailwind CSS
-- Lucide React icons
+## Current functionality
 
-## Run locally
+### User accounts and access
 
-1. Install dependencies: `npm install`
-2. Copy `.env.sample` to `.env` and add your Appwrite URL and project ID.
-3. Start the app: `npm run dev`
+- Sign up with name, email, and password
+- Sign in with an existing Appwrite email/password account
+- Restore the signed-in session on refresh
+- Protect the application area from unauthenticated users
+- Update the account display name
+- Sign out securely
+
+### Job application management
+
+- Add an application with role, company, location, status, date applied, job-posting URL, and notes
+- Edit existing application details
+- Delete an application with a confirmation prompt
+- Store and retrieve applications through Appwrite Database
+- Open a saved job-posting link directly from the table
+- Validate required fields before saving
+
+### Tracking and organisation
+
+- Track application stages: **Applied, OA, Round 1, Interview, Offer,** and **Rejected**
+- Search applications by role, company, location, or status
+- Filter applications by stage
+- Sort applications by most recently applied
+- View applications in a clear responsive table
+
+### Dashboard and user experience
+
+- View a bar chart of applications grouped by stage
+- See quick metrics for total applications, online assessments, interviews, offers, and rejections
+- Use responsive desktop and mobile navigation
+- Switch between light and dark themes
+- Receive clear loading and Appwrite error feedback
+
+## Technologies and concepts used
+
+| Area | Technologies / concepts |
+| --- | --- |
+| Frontend | React 19, JSX, Vite |
+| Routing | React Router with nested routes and protected-route redirects |
+| State management | Redux Toolkit and React Redux for authentication and application state |
+| Backend | Appwrite Account API for authentication and Appwrite Database API for application records |
+| Forms | React Hook Form is installed; application forms use controlled React inputs and client-side validation |
+| Styling | Tailwind CSS, responsive design, CSS custom properties, light/dark theming |
+| UI | Lucide React icons, accessible labels, dialogs, alerts, confirmations, and an SVG bar chart |
+| Data operations | CRUD: create, read, update, and delete application documents |
+| Configuration | Environment variables through Vite's `VITE_` convention |
+
+## How Appwrite is used as the backend
+
+Appwrite removes the need to build a traditional server for the current version of Traccio.
+
+- **Authentication:** Appwrite Account manages registration, email/password login, sessions, logout, current-user retrieval, and profile-name updates.
+- **Database:** Appwrite Database stores each job application as a document.
+- **Security:** With Document Security enabled, applications created by an authenticated user are restricted to that user.
+- **Client integration:** The Appwrite JavaScript SDK is configured using values from the `.env` file.
 
 ## Appwrite database setup
 
-Create a collection using the ID in `VITE_APPWRITE_COLLECTION_ID`. Add these attributes:
+Create a database and collection, then use their IDs in the environment variables below. Enable **Document Security** on the collection.
 
 | Attribute | Type | Required |
 | --- | --- | --- |
@@ -42,10 +81,72 @@ Create a collection using the ID in `VITE_APPWRITE_COLLECTION_ID`. Add these att
 | `appliedDate` | String (10) | Yes |
 | `notes` | String (600) | No |
 
-Enable **Document Security**. The app creates each document while the user is signed in, so Appwrite gives that user access to only their own applications by default.
+## Run locally
+
+1. Clone the repository and open the project directory.
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Copy `.env.sample` to `.env`.
+4. Replace the placeholder values with your Appwrite endpoint, project ID, database ID, and collection ID:
+
+   ```env
+   VITE_APPWRITE_URL="https://<region>.cloud.appwrite.io/v1"
+   VITE_APPWRITE_PROJECT_ID="your_project_id"
+   VITE_APPWRITE_DATABASE_ID="your_database_id"
+   VITE_APPWRITE_COLLECTION_ID="your_collection_id"
+   ```
+
+5. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
 
 ## Available scripts
 
-- `npm run dev` — start the development server
-- `npm run lint` — check code quality
-- `npm run build` — create a production build
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run lint` | Run ESLint checks |
+| `npm run build` | Create a production build |
+| `npm run preview` | Preview the production build locally |
+
+## Planned upgrades
+
+These are proposed next steps and are not part of the current project.
+
+### Build a custom backend
+
+Develop a dedicated backend with Node.js and Express/NestJS, REST or GraphQL APIs, a relational database such as PostgreSQL, JWT/refresh-token authentication, server-side validation, rate limiting, logging, and automated tests. Appwrite could then be retained for selected services or replaced gradually.
+
+### AI job-search assistant
+
+Add an AI chatbot that can help users:
+
+- Summarise job descriptions and identify key skills
+- Compare a resume with a job posting and suggest improvements
+- Generate tailored cover-letter or outreach-message drafts
+- Recommend interview preparation questions
+- Suggest next actions from the user's application pipeline
+
+The assistant should use explicit user consent and avoid submitting applications or sending messages without review.
+
+### Other upgrade ideas
+
+- Calendar integration and reminders for interviews, assessments, and follow-ups
+- Email parsing to automatically update application stages from recruiter messages
+- Resume and cover-letter file uploads with version history
+- Kanban-board and timeline views
+- Advanced analytics, such as response rate by company, role, location, or source
+- Tags, saved filters, archived applications, and CSV/PDF export
+- Multi-device real-time syncing and offline support
+- Password reset, email verification, social login, and stronger account-security controls
+- Automated tests, CI/CD deployment, monitoring, and accessibility audits
+
+## Project status
+
+This is the final version of the current Traccio project. The upgrade ideas above provide a clear roadmap for evolving it into a more complete job-search platform.
