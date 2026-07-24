@@ -1,5 +1,6 @@
 import { Client, Databases, ID, Query } from "appwrite";
 import conf from "../conf/conf";
+import authService from "./auth";
 
 const requiredConfig = [conf.appwriteUrl, conf.appwriteProjectId, conf.appwriteDatabaseId, conf.appwriteCollectionId];
 const isConfigured = requiredConfig.every((value) => value && value !== "undefined");
@@ -10,7 +11,7 @@ if (isConfigured) {
 }
 
 const databases = new Databases(client);
-const user = await authService.getCurrentUser();
+
 
 const toApplication = (document) => ({
   id: document.$id,
@@ -40,6 +41,7 @@ const ensureConfigured = () => {
 export const applicationService = {
   async list() {
     ensureConfigured();
+    const user = await authService.getCurrentUser();
     const result = await databases.listDocuments({
       databaseId: conf.appwriteDatabaseId,
       collectionId: conf.appwriteCollectionId,
@@ -53,6 +55,7 @@ export const applicationService = {
 
   async create(application) {
     ensureConfigured();
+    const user = await authService.getCurrentUser();
     const document = await databases.createDocument({
       databaseId: conf.appwriteDatabaseId,
       collectionId: conf.appwriteCollectionId,
