@@ -14,7 +14,7 @@ export default function Applications() {
   const visible = applications
     .filter((item) => [item.role, item.company, item.location, item.status].join(" ").toLowerCase().includes(query))
     .filter((item) => statusFilter === "All" || item.status === statusFilter)
-    .sort((first, second) => new Date(second.appliedDate) - new Date(first.appliedDate));
+    .sort((first, second) => new Date(second.dateApplied) - new Date(first.dateApplied));
 
   const deleteApplication = async (id) => {
     if (!window.confirm("Delete this application? This cannot be undone.")) return;
@@ -73,7 +73,7 @@ export default function Applications() {
                     <StatusBadge status={item.status} />
                   </td>
                   <td className="p-5 text-[var(--text-secondary)]">
-                    {new Date(item.appliedDate).toLocaleDateString(undefined, {
+                    {new Date(item.dateApplied).toLocaleDateString(undefined, {
                       year: "numeric",
                       month: "short",
                       day: "numeric",

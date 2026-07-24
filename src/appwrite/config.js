@@ -20,7 +20,7 @@ const toApplication = (document) => ({
   location: document.location,
   jobUrl: document.jobUrl || "",
   status: document.status,
-  appliedDate: document.appliedDate,
+  dateApplied: document.dateApplied,
   notes: document.notes || "",
 });
 
@@ -30,7 +30,7 @@ const toDocumentData = ({
   location,
   jobUrl,
   status,
-  appliedDate,
+  dateApplied,
   notes,
 }) => ({
   role,
@@ -38,7 +38,7 @@ const toDocumentData = ({
   location,
   jobUrl: jobUrl || "",
   status,
-  appliedDate: new Date(appliedDate).toISOString(),
+  dateApplied: new Date(dateApplied).toISOString(),
   notes: notes || "",
 });
 

@@ -81,7 +81,7 @@ Create a database and collection, then use their IDs in the environment variable
 | `location` | String (80) | Yes |
 | `jobUrl` | String (500) | No |
 | `status` | String (30) | Yes |
-| `appliedDate` | String (10) | Yes |
+| `dateApplied` | String (10) | Yes |
 | `notes` | String (600) | No |
 
 ## Run locally
