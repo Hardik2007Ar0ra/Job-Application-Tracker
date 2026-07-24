@@ -67,7 +67,7 @@ export default function Applications() {
                   <td className="p-5">
                     <p className="text-[var(--text-primary)]">{item.company}</p>
                     <p className="mt-1 text-sm text-[var(--text-secondary)]">{item.location}</p>
-                    {item.jobUrl && <a href={item.jobUrl} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm text-accent hover:opacity-85">View posting <ExternalLink size={14} /></a>}
+                    {item.jonLink && <a href={item.jobLink} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm text-accent hover:opacity-85">View posting <ExternalLink size={14} /></a>}
                   </td>
                   <td className="p-5">
                     <StatusBadge status={item.status} />

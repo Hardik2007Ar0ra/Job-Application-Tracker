@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import { statuses } from "../data/applications";
 import useApplications from "../hooks/useApplications";
 
-const empty = { role: "", company: "", location: "", jobUrl: "", status: "Applied", dateApplied: new Date().toISOString().slice(0, 10), notes: "" };
+const empty = { role: "", company: "", location: "", jobLink: "", status: "Applied", dateApplied: new Date().toISOString().slice(0, 10), notes: "" };
 
 export default function ApplicationForm({ application, onClose }) {
   const [form, setForm] = useState(application || empty);
@@ -37,7 +37,7 @@ export default function ApplicationForm({ application, onClose }) {
     <form onSubmit={submit} aria-modal="true" role="dialog" aria-labelledby="application-form-title" className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-3xl border border-white/10 bg-[#1c1c1c] p-6 shadow-2xl sm:p-8">
       <div className="mb-7 flex items-center justify-between"><h2 id="application-form-title" className="font-serif text-3xl font-bold">{application ? "Edit application" : "Add application"}</h2><button type="button" onClick={onClose} aria-label="Close form" className="text-stone-400 hover:text-white"><X /></button></div>
       <div className="grid gap-5 sm:grid-cols-2">{[["role", "Role"], ["company", "Company"], ["location", "Location"], ["dateApplied", "Applied date"]].map(([name, label]) => <label key={name} className={name === "role" ? "sm:col-span-2" : ""}><span className="mb-2 block text-sm text-stone-400">{label}</span><input required name={name} type={name === "dateApplied" ? "date" : "text"} maxLength={name === "location" ? 80 : 120} value={form[name]} onChange={change} className="w-full rounded-xl border border-white/10 bg-[#252525] px-4 py-3 outline-none focus:border-accent" /></label>)}</div>
-      <label className="mt-5 block"><span className="mb-2 block text-sm text-stone-400">Job posting link <span className="text-stone-500">(optional)</span></span><input name="jobUrl" type="url" value={form.jobUrl || ""} onChange={change} placeholder="https://company.com/jobs/..." className="w-full rounded-xl border border-white/10 bg-[#252525] px-4 py-3 outline-none focus:border-accent" /></label>
+      <label className="mt-5 block"><span className="mb-2 block text-sm text-stone-400">Job posting link <span className="text-stone-500">(optional)</span></span><input name="jobLink" type="url" value={form.jobLink || ""} onChange={change} placeholder="https://company.com/jobs/..." className="w-full rounded-xl border border-white/10 bg-[#252525] px-4 py-3 outline-none focus:border-accent" /></label>
       <label className="mt-5 block"><span className="mb-2 block text-sm text-stone-400">Stage</span><select name="status" value={form.status} onChange={change} className="w-full rounded-xl border border-white/10 bg-[#252525] px-4 py-3 outline-none">{statuses.map((status) => <option key={status}>{status}</option>)}</select></label>
       <label className="mt-5 block"><span className="mb-2 block text-sm text-stone-400">Notes</span><textarea name="notes" value={form.notes} onChange={change} rows="3" maxLength="600" placeholder="Interview details, recruiter contact, or next steps" className="w-full resize-none rounded-xl border border-white/10 bg-[#252525] px-4 py-3 outline-none focus:border-accent" /></label>
       {error && <p className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{error}</p>}
