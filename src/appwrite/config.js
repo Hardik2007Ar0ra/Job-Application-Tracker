@@ -73,6 +73,8 @@ export const applicationService = {
         userID:user.$id
       }
     });
+    console.log(application);
+    console.log(toDocumentData(application));
     return toApplication(document);
   },
 
