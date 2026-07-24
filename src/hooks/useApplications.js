@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { applicationService } from "../appwrite/config";
+import authService from "../appwrite/auth";
 import { addApplication, removeApplication, setApplications, setError, setLoading, updateApplication } from "../store/applicationsSlice";
 
 export default function useApplications() {

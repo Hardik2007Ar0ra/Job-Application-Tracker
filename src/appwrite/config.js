@@ -24,13 +24,21 @@ const toApplication = (document) => ({
   notes: document.notes || "",
 });
 
-const toDocumentData = ({ role, company, location, jobUrl, status, appliedDate, notes }) => ({
+const toDocumentData = ({
+  role,
+  company,
+  location,
+  jobUrl,
+  status,
+  appliedDate,
+  notes,
+}) => ({
   role,
   company,
   location,
   jobUrl: jobUrl || "",
   status,
-  appliedDate,
+  appliedDate: new Date(appliedDate).toISOString(),
   notes: notes || "",
 });
 
