@@ -29,7 +29,7 @@ export default function Home() {
 
       {applications.length === 0 ? (
         <div className="mt-12 flex flex-col items-center justify-center rounded-3xl border border-[var(--border-color)] bg-[var(--bg-card)] p-8 text-center sm:p-16 transition-colors duration-200">
-          <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[#df6d51]/10 text-[#df6d51]">
+          <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-accent/10 text-accent">
             <BriefcaseBusiness size={40} />
           </div>
           <h2 className="mt-6 font-serif text-2xl font-bold sm:text-3xl text-[var(--text-primary)]">
@@ -40,7 +40,7 @@ export default function Home() {
           </p>
           <button
             onClick={() => openForm()}
-            className="mt-8 flex items-center gap-2 rounded-2xl bg-[#df6d51] px-6 py-4 font-semibold text-white transition hover:bg-[#ed7a5e]"
+            className="mt-8 flex items-center gap-2 rounded-2xl bg-accent px-6 py-4 font-semibold text-white transition hover:bg-accent-hover"
           >
             <Plus size={20} />
             Add Application
@@ -56,7 +56,7 @@ export default function Home() {
 
           <div className="mt-14 flex items-center justify-between">
             <h2 className="font-serif text-3xl font-bold">Recent Applications</h2>
-            <Link to="/app/applications" className="text-[#ef7355] hover:text-[#ff9479] font-medium transition-colors">
+            <Link to="/app/applications" className="text-accent hover:opacity-85 font-medium transition-opacity">
               View all
             </Link>
           </div>

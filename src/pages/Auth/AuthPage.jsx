@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, ArrowRight, BriefcaseBusiness } from "lucide-react";
 import authService from "../../appwrite/auth";
-import {login,logout} from '../../store/authSlice';
+import { login } from '../../store/authSlice';
 import { useDispatch } from "react-redux";
 
 function AuthPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 
   const [mode, setMode] = useState("signin");
@@ -42,9 +44,7 @@ function AuthPage() {
       const user = await authService.getCurrentUser()
       console.log(user);
       dispatch(login(user));
-
-      // Later: navigate("/dashboard");
-      console.log("Authentication successful");
+      navigate("/app");
     } catch (authError) {
       setError(authError.message || "Something went wrong. Please try again.");
     } finally {
@@ -60,15 +60,15 @@ function AuthPage() {
   
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#121212] text-white">
-      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:90px_90px]" />
+    <main className="min-h-screen overflow-hidden bg-[#090b11] text-white">
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:90px_90px]" />
 
-      <div className="pointer-events-none fixed -left-40 top-0 h-[440px] w-[440px] rounded-full bg-[#d9684c]/10 blur-3xl" />
-      <div className="pointer-events-none fixed -right-40 bottom-0 h-[440px] w-[440px] rounded-full bg-[#d9684c]/10 blur-3xl" />
+      <div className="pointer-events-none fixed -left-40 top-0 h-[440px] w-[440px] rounded-full bg-accent/10 blur-3xl" />
+      <div className="pointer-events-none fixed -right-40 bottom-0 h-[440px] w-[440px] rounded-full bg-accent/10 blur-3xl" />
 
       <section className="relative mx-auto flex min-h-screen w-full max-w-2xl flex-col items-center px-5 py-10 sm:py-16">
         <div className="mb-12 text-center">
-          <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-[26px] bg-[#df6d51]">
+          <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-[26px] bg-accent">
             <BriefcaseBusiness size={30} strokeWidth={2.3} />
           </div>
 
@@ -78,14 +78,14 @@ function AuthPage() {
           </p>
         </div>
 
-        <div className="w-full max-w-[630px] rounded-[36px] border border-white/10 bg-[#1c1c1c] p-5 shadow-2xl shadow-black/30 sm:p-12">
-          <div className="mb-10 grid grid-cols-2 rounded-3xl bg-[#101010] p-1.5">
+        <div className="w-full max-w-[630px] rounded-[36px] border border-white/10 bg-[#151824] p-5 shadow-2xl shadow-black/30 sm:p-12">
+          <div className="mb-10 grid grid-cols-2 rounded-3xl bg-[#090b11] p-1.5">
             <button
               type="button"
               onClick={() => switchMode("signin")}
               className={`rounded-2xl py-3 text-lg transition ${
                 !isSignUp
-                  ? "bg-[#df6d51] font-semibold text-white"
+                  ? "bg-accent font-semibold text-white"
                   : "text-stone-400 hover:text-white"
               }`}
             >
@@ -97,7 +97,7 @@ function AuthPage() {
               onClick={() => switchMode("signup")}
               className={`rounded-2xl py-3 text-lg transition ${
                 isSignUp
-                  ? "bg-[#df6d51] font-semibold text-white"
+                  ? "bg-accent font-semibold text-white"
                   : "text-stone-400 hover:text-white"
               }`}
             >
@@ -118,7 +118,7 @@ function AuthPage() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Emma Watson"
-                  className="w-full rounded-3xl border border-white/10 bg-[#242424] px-6 py-4 text-lg text-white outline-none transition placeholder:text-stone-500 focus:border-[#df6d51]"
+                  className="w-full rounded-3xl border border-white/10 bg-[#1a1d29] px-6 py-4 text-lg text-white outline-none transition placeholder:text-stone-500 focus:border-accent"
                 />
               </label>
             )}
@@ -134,7 +134,7 @@ function AuthPage() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="emma@example.com"
-                className="w-full rounded-3xl border border-white/10 bg-[#242424] px-6 py-4 text-lg text-white outline-none transition placeholder:text-stone-500 focus:border-[#df6d51]"
+                className="w-full rounded-3xl border border-white/10 bg-[#1a1d29] px-6 py-4 text-lg text-white outline-none transition placeholder:text-stone-500 focus:border-accent"
               />
             </label>
 
@@ -152,7 +152,7 @@ function AuthPage() {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="••••••••"
-                  className="w-full rounded-3xl border border-white/10 bg-[#242424] px-6 py-4 pr-14 text-lg text-white outline-none transition placeholder:text-stone-500 focus:border-[#df6d51]"
+                  className="w-full rounded-3xl border border-white/10 bg-[#1a1d29] px-6 py-4 pr-14 text-lg text-white outline-none transition placeholder:text-stone-500 focus:border-accent"
                 />
 
                 <button
@@ -169,7 +169,7 @@ function AuthPage() {
             {!isSignUp && (
               <button
                 type="button"
-                className="mt-4 block ml-auto text-base text-[#f07859] hover:text-[#ff9479]"
+                className="mt-4 block ml-auto text-base text-accent hover:opacity-85"
               >
                 Forgot password?
               </button>
@@ -184,7 +184,7 @@ function AuthPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="mt-7 flex w-full items-center justify-center gap-3 rounded-3xl bg-[#df6d51] px-6 py-4 text-xl font-semibold text-white transition hover:bg-[#ed7a5e] disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-7 flex w-full items-center justify-center gap-3 rounded-3xl bg-accent px-6 py-4 text-xl font-semibold text-white transition hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isSubmitting
                 ? "Please wait..."
@@ -198,26 +198,13 @@ function AuthPage() {
             <button
                 type="button"
                 onClick={() => switchMode("signup")}
-                className="mt-5 w-full text-center text-sm text-stone-400 transition hover:text-[#f07859]"
+                className="mt-5 w-full text-center text-sm text-stone-400 transition hover:text-accent"
             >
                 Don&apos;t have an account?{" "}
-                <span className="font-semibold text-[#f07859]">Sign up</span>
+                <span className="font-semibold text-accent">Sign up</span>
             </button>
             )}
 
-          <div className="my-9 flex items-center gap-4 text-stone-500">
-            <span className="h-px flex-1 bg-white/10" />
-            <span className="text-sm">or</span>
-            <span className="h-px flex-1 bg-white/10" />
-          </div>
-
-          <button
-            type="button"
-            className="flex w-full items-center justify-center gap-4 rounded-3xl border border-white/5 bg-[#111111] px-6 py-4 text-lg font-medium transition hover:bg-[#171717]"
-          >
-            <span className="font-bold text-[#4285F4]">G</span>
-            Continue with Google
-          </button>
         </div>
       </section>
     </main>

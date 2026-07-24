@@ -1,1 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-bg: var(--accent-bg);
+  --color-accent-border: var(--accent-border);
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+
+  --bg-primary: #090b11;
+  --bg-secondary: #0e111a;
+  --bg-card: #151824;
+  --bg-card-hover: #1e2233;
+  --bg-input: #1a1d29;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: rgba(99, 102, 241, 0.08);
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-bg: rgba(99, 102, 241, 0.1);
+  --accent-border: rgba(99, 102, 241, 0.3);
+}
+
+:root.light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-input: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: rgba(99, 102, 241, 0.1);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: var(--bg-primary); color: var(--text-primary); }
+button, input, select, textarea { font: inherit; }
+

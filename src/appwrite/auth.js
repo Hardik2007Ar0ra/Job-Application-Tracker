@@ -44,9 +44,7 @@ export class AuthService{
         } catch (error) {
             console.error("Error fetching current user:", error);
             throw error;
-        
         }
-        return null;   
     }
 
     async logout(){
@@ -54,6 +52,15 @@ export class AuthService{
             await this.account.deleteSessions();
         } catch (error) {
             console.error("Error logging out:", error);
+            throw error;
+        }
+    }
+
+    async updateName(name){
+        try{
+            return await this.account.updateName(name);
+        } catch (error) {
+            console.error("Error updating name:", error);
             throw error;
         }
     }

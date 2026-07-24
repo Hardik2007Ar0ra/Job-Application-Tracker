@@ -37,7 +37,7 @@ export default function Leftbar() {
   return (
     <aside className="fixed inset-y-0 left-0 hidden w-72 flex-col border-r border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-primary)] transition-colors duration-200 lg:flex">
       <div className="flex h-28 items-center gap-4 border-b border-[var(--border-color)] px-8">
-        <div className="grid h-12 w-12 place-items-center rounded-full bg-[#df6d51] text-white">
+        <div className="grid h-12 w-12 place-items-center rounded-full bg-accent text-white">
           <BriefcaseBusiness size={23} />
         </div>
         <h1 className="font-serif text-3xl font-bold">Traccio</h1>
@@ -52,7 +52,7 @@ export default function Leftbar() {
             className={({ isActive }) =>
               `flex items-center gap-4 rounded-2xl px-5 py-4 text-lg transition ${
                 isActive
-                  ? "bg-[var(--bg-primary)] text-[#ef7355] font-semibold"
+                  ? "bg-[var(--bg-primary)] text-accent font-semibold"
                   : "text-[var(--text-secondary)] hover:bg-[var(--bg-input)] hover:text-[var(--text-primary)]"
               }`
             }
@@ -65,7 +65,7 @@ export default function Leftbar() {
 
       <div className="m-4 mt-auto flex items-center justify-between gap-3 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-input)] p-4">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#df6d51] font-bold text-white text-sm">
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent font-bold text-white text-sm">
             {getInitials(user?.name)}
           </div>
           <div className="min-w-0">
@@ -80,7 +80,7 @@ export default function Leftbar() {
         <button
           onClick={handleLogout}
           title="Sign out"
-          className="rounded-lg p-2 text-[var(--text-secondary)] hover:bg-[var(--bg-primary)] hover:text-[#df6d51] transition-colors"
+          className="rounded-lg p-2 text-[var(--text-secondary)] hover:bg-[var(--bg-primary)] hover:text-accent transition-colors"
         >
           <LogOut size={18} />
         </button>

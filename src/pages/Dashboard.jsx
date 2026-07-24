@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import useApplications from "../hooks/useApplications";
 import { BriefcaseBusiness, ClipboardList, Calendar, CheckCircle2, XCircle } from "lucide-react";
 
@@ -110,13 +109,13 @@ export default function Dashboard() {
             {/* Gradients */}
             <defs>
               <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#df6d51" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#df6d51" stopOpacity="0.2" />
+                <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.2" />
               </linearGradient>
             </defs>
 
             {/* Grid lines */}
-            {gridTicks.map((tick, index) => {
+            {gridTicks.map((tick) => {
               const y = baselineY - (tick / maxVal) * chartHeight;
               return (
                 <g key={tick} className="opacity-80">
